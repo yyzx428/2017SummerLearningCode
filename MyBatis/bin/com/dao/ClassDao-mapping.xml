@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+<mapper namespace="com.dao.ClassDao">
+
+  <select id="findClassById" resultType="com.model.Class" > 
+    select * from class where classNum = #{ClassNum}
+  </select>
+ 
+  <resultMap id="ClassResultMap" type="com.model.Class">
+  	<id column="ClassNum" property="ClassNum" />
+  	<result column="Name" property="Name" />
+  </resultMap>
+  
+   <select id="findAllClass" resultMap="ClassResultMap" > 
+    select * from class
+  </select>
+  
+  <insert id="insertClass" parameterType="com.model.Class">
+  		insert into class (classNum,name)
+  		values (#{ClassNum},#{Name})
+  </insert>
+  
+  <delete id="deleteClass" parameterType="java.lang.String">
+  		delete from class where classNum=#{classNum}
+  </delete>
+</mapper>
